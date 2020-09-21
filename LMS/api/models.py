@@ -17,14 +17,20 @@ class AppUser(models.Model):
     # item_no = models.ForeignKey("Items", on_delete=models.CASCADE, null=True, related_name='app_users')
 
 
+#     email
+# password
+# name
+# tp
+# addres
+
+
 class Items(models.Model):
     item_choices = [
         ('BOOK', 'BOOK'),
-        ('PAPER', 'PAPER'),
+        ('PASS_PAPER', 'PASS_PAPER'),
         ('MAGAZINE', 'MAGAZINE'),
-        ('DOCUMENTARIES', 'DOCUMENTARIES'),
-        ('TUTORIALS', 'TUTORIALS'),
-        ('DVD', 'DVD')
+        ('DVD', 'DVD'),
+        ('COMICS', 'COMICS')
 
     ]
     condition_choices = [
@@ -44,6 +50,20 @@ class Items(models.Model):
     isbn = models.CharField(default="BOOK", max_length=20)
     # due_date = models.IntegerField(default=14)  choci field normal high
     condition = models.CharField(default="normal", choices=condition_choices, max_length=20)
+
+
+#     vedio -> duration
+#     smmster
+# year
+# programme
+# exame date
+# voluem
+
+
+class ItemGroup(models.Model):
+    item = models.ForeignKey(Items, on_delete=models.CASCADE, related_name='transfer__item')
+#     quntity
+# avalbel_ quntity
 
 
 class Transfer(models.Model):
