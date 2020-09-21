@@ -8,12 +8,13 @@ class AppUser(models.Model):
     permission_choices = [
         ('ADMIN', 'ADMIN'),
         ('LIBRARIAN', 'LIBRARIAN'),
+        ('SUPPLIER', 'SUPPLIER'),
         ('MEMBER', 'MEMBER')
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='app_user')
     permission_level = models.CharField(choices=permission_choices, default='MEMBER', max_length=20)
-    item_no = models.ForeignKey("Items", on_delete=models.CASCADE, null=True, related_name='app_users')
+    # item_no = models.ForeignKey("Items", on_delete=models.CASCADE, null=True, related_name='app_users')
 
 
 class Items(models.Model):
