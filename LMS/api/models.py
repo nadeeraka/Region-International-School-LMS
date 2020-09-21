@@ -21,7 +21,11 @@ class Items(models.Model):
     item_choices = [
         ('BOOK', 'BOOK'),
         ('PAPER', 'PAPER'),
-        ('MAGAZINE', 'MAGAZINE')
+        ('MAGAZINE', 'MAGAZINE'),
+        ('DOCUMENTARIES', 'DOCUMENTARIES'),
+        ('TUTORIALS', 'TUTORIALS'),
+        ('DVD', 'DVD')
+
     ]
     condition_choices = [
         ('NORMAL', 'NORMAL'),
@@ -31,12 +35,20 @@ class Items(models.Model):
     item_type = models.CharField(choices=item_choices, default="BOOK", max_length=20)
     user = models.ForeignKey(AppUser, on_delete=models.CASCADE, related_name='app_user')
     takeaway = models.BooleanField(default=True)
-    due_date = models.IntegerField(default=14)
+    author = models.CharField(default="BOOK", max_length=20)
+    name = models.CharField(default="BOOK", max_length=20)
+    # title = models.CharField(default="BOOK", max_length=20) shoud be  choice field
+    # publisher
+    #  lanuge
+    # url
+    isbn = models.CharField(default="BOOK", max_length=20)
+    # due_date = models.IntegerField(default=14)  choci field normal high
     condition = models.CharField(default="normal", choices=condition_choices, max_length=20)
 
 
 class Transfer(models.Model):
     user = models.ForeignKey(AppUser, on_delete=models.CASCADE, related_name='app_user')
     item = models.ForeignKey(Items, on_delete=models.CASCADE, related_name='transfer__item')
-    has_fine = takeaway = models.BooleanField(default=False)
+    has_fine = models.BooleanField(default=False)
     fine = models.DecimalField(max_digits=100, decimal_places=3, default=0)
+    # borrow_date = models.DateTimeField()
